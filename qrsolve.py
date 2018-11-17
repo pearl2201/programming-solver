@@ -5,8 +5,9 @@ from PIL import Image
 
 session = requests.Session()
 headers = {'User-Agent': 'Mozilla/5.0'}
+uri = 'http://challenge01.root-me.org/programmation/ch7/'
 
-r = session.get('http://challenge01.root-me.org/programmation/ch7/',headers = headers)  
+r = session.get(uri,headers = headers)  
 
 # Get Image data
 start = r.text.find('img') 
@@ -40,7 +41,7 @@ code = barcodes[0].data.decode('utf-8')[11:]
 print (code)
 
 # Upload result
-uri = 'http://challenge01.root-me.org/programmation/ch7/'
+
 payload = {'metu':code}
 r1 = session.post(uri,headers = headers,data=payload)
 
