@@ -18,6 +18,7 @@ def ep1(ep,bot,message):
 		print ("message: %s" %message)
 		if 'password' in message:
 			bot.disconnect()
+			bot.loop.stop()
 			
 def ep2(ep,bot,message):
 	import base64
@@ -35,9 +36,6 @@ def ep2(ep,bot,message):
 	except Exception as e:
 		print ("%s" %e)
 		bot.disconnect()
-
-		# Signal a stop before disconnecting so that any reconnect
-		# coros aren't run by the last run_forever sweep.
 		bot.loop.stop()
 		
 def ep3(ep,bot,message):
@@ -47,24 +45,24 @@ def ep3(ep,bot,message):
 		bot.disconnect()
 		bot.loop.stop()
 		return
+		
 	try:
 		reply  = codecs.decode(message,'rot_13')
 		ret = "!ep3 -rep %s" %(reply)
-		print (ret)
 		bot.send('PRIVMSG', target='Candy', message=ret)
 
 	except Exception as e:
 		print ("%s" %e)
 		bot.disconnect()
-
-		# Signal a stop before disconnecting so that any reconnect
-		# coros aren't run by the last run_forever sweep.
 		bot.loop.stop()
 		
 def ep4(ep,bot,message):
+	
 	import base64
 	import zlib
+	
 	print ("message: %s" %message)
+	
 	if 'password' in message:
 		bot.disconnect()
 		bot.loop.stop()
@@ -78,9 +76,6 @@ def ep4(ep,bot,message):
 	except Exception as e:
 		print ("%s" %e)
 		bot.disconnect()
-
-		# Signal a stop before disconnecting so that any reconnect
-		# coros aren't run by the last run_forever sweep.
 		bot.loop.stop()
 	
 
